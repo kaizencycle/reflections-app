@@ -2,6 +2,32 @@
 
 import axios from "axios";
 
+import axios from "axios";
+
+const LAB4 = process.env.NEXT_PUBLIC_API_LAB4;
+const LEDGER = process.env.NEXT_PUBLIC_API_LEDGER;
+const LAB6 = process.env.NEXT_PUBLIC_API_LAB6;
+
+const api = axios.create({
+  timeout: 15000,
+});
+
+// Example endpoints
+export async function getReflections() {
+  const res = await api.get(`${LAB4}/reflections`);
+  return res.data;
+}
+
+export async function postReflection(content) {
+  const res = await api.post(`${LAB4}/reflections`, { content });
+  return res.data;
+}
+
+export async function companionRespond() {
+  const res = await api.post(`${LAB4}/companion/respond`);
+  return res.data;
+}
+
 /* --------- Env (configure in .env.local) --------- */
 const LAB4   = import.meta?.env?.VITE_API_LAB4   || process.env.NEXT_PUBLIC_API_LAB4   || "";
 const LEDGER = import.meta?.env?.VITE_API_LEDGER || process.env.NEXT_PUBLIC_API_LEDGER || "";
