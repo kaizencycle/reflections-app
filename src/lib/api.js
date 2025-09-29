@@ -1,0 +1,229 @@
+// One client for all services: Lab4 (Reflections), Ledger, Lab6 (Citizen Shield)
+
+import axios from "axios";
+
+/* --------- Env (configure in .env.local) --------- */
+const LAB4   = import.meta?.env?.VITE_API_LAB4   || process.env.NEXT_PUBLIC_API_LAB4   || "";
+const LEDGER = import.meta?.env?.VITE_API_LEDGER || process.env.NEXT_PUBLIC_API_LEDGER || "";
+const LAB6   = import.meta?.env?.VITE_API_LAB6   || process.env.NEXT_PUBLIC_API_LAB6   || "";
+
+/* --------- Local token helpers --------- */
+const TOKEN_KEY = "civic_token";           // session token for user
+const ADMIN_KEY = "admin_token";           // optional, for founder console (if you use it)
+
+export function getToken() {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(TOKEN_KEY) || localStorage.getItem(ADMIN_KEY) || null;
+}
+export function setToken(tok) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(TOKEN_KEY, tok);
+}
+export function clearToken() {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(TOKEN_KEY);
+}
+
+/* --------- Axios with auth + tiny retry --------- */
+const api = axios.create({ timeout: 15000 });
+
+api.interceptors.request.use((cfg) => {
+  const tok = getToken();
+  if (tok) cfg.headers = { ...(cfg.headers || {}), Authorization: `Bearer ${tok}` };
+  return cfg;
+});
+
+// simple retry on 401 using refreshToken()
+api.interceptors.response.use(
+  (res) => res,
+  async (err) => {
+    const status = err?.response?.status;
+    const cfg = err?.config || {};
+    if (!cfg.__retried && status === 401) {
+      cfg.__retried = true;
+      const r = await refreshToken();
+      if (r?.ok && r?.token) {
+        setToken(r.token);
+        cfg.headers = { ...(cfg.headers || {}), Authorization: `Bearer ${r.token}` };
+        return api.request(cfg);
+      }
+    }
+    throw err;
+  }
+);
+
+/* =========================================================================
+   Lab4 – Reflections & Companion (front-end facing)
+   ========================================================================= */
+
+// Flexible signature: saveReflection(text) OR saveReflection(civicId, text, token)
+export async function saveReflection(a, b, c) {
+  let civicId, content, token;
+  if (typeof b === "undefined") {
+    // saveReflection(text)
+    content = a;
+  } else {
+    // saveReflection(civicId, text, token)
+    civicId = a;
+    content = b;
+    token = c;
+  }
+
+  // TODO: swap to your real Lab4 endpoint when ready:
+  // await api.post(`${LAB4}/reflections`, { civic_id: civicId, content }, token ? { headers: { Authorization: `Bearer ${token}` } } : {});
+  return { ok: true, content }; // stub for now
+}
+
+export async function getReflections() {
+  // const { data } = await api.get(`${LAB4}/reflections`);
+  // return data?.items ?? [];
+  return []; // stub until your Lab4 endpoint is live
+}
+
+export async function logoutSoft() {
+  try {
+    // await api.post(`${LAB4}/auth/logout_soft`);
+  } finally {
+    clearToken();
+  }
+}
+
+export async function getCompanion() {
+  // const { data } = await api.get(`${LAB4}/companions/current`);
+  // return data;
+  return { name: "Companion" }; // stub
+}
+
+export async function companionRespond(inputText = "") {
+  // const { data } = await api.post(`${LAB4}/companions/respond`, { text: inputText });
+  // return { ok: true, response: data.reply };
+  return { ok: true, response: inputText ? `Echo: “${inputText}”` : "How are you feeling today?" };
+}
+
+/* Memory helpers if/when you expose them on Lab4 */
+export async function memoryAppend(items) {
+  // await api.post(`${LAB4}/memory/append`, { items });
+  return { ok: true };
+}
+export async function memorySummarize() {
+  // await api.post(`${LAB4}/memory/summarize`);
+  return { ok: true };
+}
+
+/* =========================================================================
+   Ledger – Attest anchors
+   ========================================================================= */
+
+export async function anchorReflection(payload) {
+  // expected payload example:
+  // { event_type: 'reflection', civic_id: '...', lab_source: 'lab4', payload: {...}, signature?: '...' }
+  // await api.post(`${LEDGER}/ledger/attest`, payload);
+  return { ok: true }; // stub
+}
+
+/* =========================================================================
+   Lab6 – Citizen Shield (placeholders)
+   ========================================================================= */
+
+export async function lab6Enroll(groupId) {
+  // await api.post(`${LAB6}/enroll`, { group_id: groupId });
+  return { ok: true };
+}
+
+export async function zkVerifyReflection(proof) {
+  // await api.post(`${LAB6}/zk/verify-reflection`, proof);
+  return { ok: true, valid: true };
+}
+
+/* =========================================================================
+   Token refresh – called by interceptor and optional hook
+   ========================================================================= */
+
+export async function refreshToken() {
+  try {
+    // const { data } = await api.post(`${LAB4}/auth/refresh`);
+    // return { ok: true, token: data.token };
+    return { ok: true }; // stub until refresh endpoint is ready
+  } catch {
+    return { ok: false };
+  }
+}
+
+
+```
+export default api;  
+  
+🔐** Add environment file**  
+  
+Create .env.local in your repo root:  
+  
+```
+# Reflections (Lab4)
+VITE_API_LAB4=https://hive-api-2le8.onrender.com
+# Ledger
+VITE_API_LEDGER=https://civic-protocol-core-ledger.onrender.com
+# Citizen Shield (Lab6)
+
+```
+VITE_API_LAB6=https://lab6-proof-api.onrender.com  
+  
+If you’re using Next.js instead of Vite, swap VITE_* for NEXT_PUBLIC_* and keep the same keys in the code (the client tries both).  
+  
+🧪** Minimal usage example**  
+  
+```
+// src/pages/ReflectionsPage.jsx (or components/ReflectionsPage.jsx)
+import { useState } from "react";
+import { saveReflection, getReflections, companionRespond, anchorReflection } from "../lib/api";
+
+export default function ReflectionsPage() {
+  const [messages, setMessages] = useState([{ role: "system", content: "Welcome to Reflections ✨" }]);
+  const [text, setText] = useState("");
+
+  async function handleSend() {
+    if (!text.trim()) return;
+
+    const userMsg = { role: "user", content: text };
+    setMessages((m) => [...m, userMsg]);
+
+    // persist + anchor (these are stubs right now)
+    await saveReflection(text);
+    await anchorReflection({
+      event_type: "reflection",
+      civic_id: "demo",
+      lab_source: "lab4",
+      payload: { text }
+    });
+
+    const reply = await companionRespond(text);
+    if (reply.ok) setMessages((m) => [...m, { role: "assistant", content: reply.response }]);
+
+    setText("");
+  }
+
+  return (
+    <div className="p-6 max-w-2xl mx-auto">
+      <h1 className="text-2xl font-bold mb-2">Reflections</h1>
+
+      <div className="border rounded p-3 h-80 overflow-auto bg-white">
+        {messages.map((m, i) => (
+          <div key={i} className="mb-2">
+            <b>{m.role}</b>: {m.content}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-3 flex gap-2">
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Type your reflection…"
+          className="flex-1 border rounded px-3 py-2"
+        />
+        <button onClick={handleSend} className="bg-indigo-600 text-white px-4 py-2 rounded">
+          Send
+        </button>
+      </div>
+    </div>
+  );
+}
