@@ -1,6 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Send, Bot, User, Sparkles, AlertTriangle } from 'lucide-react';
 import ReflectionsPage from "./views/ReflectionsPage";
+import React from 'react';
+import ReflectionsPage from './pages/ReflectionsPage';
+
+function App() {
+  return <ReflectionsPage />;
+}
+
+export default App;
 
 export default function App() {
   return <ReflectionsPage />;
