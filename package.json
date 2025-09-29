@@ -4,11 +4,12 @@
   "private": true,
   "description": "A React chat application (CRA)",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "serve": "serve -s build -l $PORT",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
   "dependencies": {
     "axios": "^1.7.4",
     "lucide-react": "^0.380.0",
