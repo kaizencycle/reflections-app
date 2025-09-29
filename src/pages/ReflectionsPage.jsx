@@ -1,6 +1,12 @@
 // src/pages/ReflectionsPage.jsx 
 import { useState } from "react";
 import { saveReflection, getReflections, companionRespond, anchorReflection } from "../lib/api";
+import React, { useState, useRef, useEffect } from 'react';
+import { Send, Bot, User, Sparkles } from 'lucide-react';
+
+const ReflectionsPage = () => {
+  // ... your chat component code here
+};
 
 export default function ReflectionsPage() {
   const [messages, setMessages] = useState([{ role: "system", content: "Welcome to Reflections ✨" }]);
