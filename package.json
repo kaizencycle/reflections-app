@@ -1,40 +1,21 @@
 {
   "name": "reflections-chat-app",
   "version": "1.0.0",
-  "description": "A React chat application powered by specialized AI companions, connected to a custom FastAPI backend.",
+  "description": "A React chat application powered by Next.js",
   "main": "src/index.js",
-  "homepage": ".", 
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "lucide-react": "^0.380.0",
+    "next": "^14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "^5.0.1"
+    "axios": "^1.7.4"
   },
   "engines": {
-    "node": "20.x"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": {
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    }
-    "scripts":{
-      "dev":"next dev"
-      "build":"next build",
-      "start":"next start"
-    }
-    "engines":{
-      "node":18.0" 
+    "node": "18.x"
   }
 }
-
