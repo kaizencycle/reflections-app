@@ -2,8 +2,6 @@
 
 import axios from "axios";
 
-import axios from "axios";
-
 const LAB4 = process.env.NEXT_PUBLIC_API_LAB4;
 const LEDGER = process.env.NEXT_PUBLIC_API_LEDGER;
 const LAB6 = process.env.NEXT_PUBLIC_API_LAB6;
