@@ -5,7 +5,7 @@ This is the front-end repository for the Reflections specialized AI chat applica
 Prerequisites
 Node.js (for running the React app)
 
-Your live FastAPI backend: https://hive-api-2le8.onrender.com/chat
+Your live FastAPI backend: https://hive-api-2le8.onrender.com
 
 Steps
 Clone or Create the Repository:
