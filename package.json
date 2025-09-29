@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A React chat application powered by specialized AI companions, connected to a custom FastAPI backend.",
   "main": "src/index.js",
+  "homepage": ".", 
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
