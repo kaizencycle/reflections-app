@@ -5,6 +5,8 @@ import { Send, Bot, User, Sparkles, AlertTriangle } from 'lucide-react';
 
 // FastAPI endpoint hosted on Render
 const FASTAPI_ENDPOINT = 'https://hive-api-2le8.onrender.com';
+const FASTAPI_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const FASTAPI_ENDPOINT = `${FASTAPI_BASE_URL}/chat`;
 
 // Define companions with roles and styling
 const companions = [
