@@ -1,28 +1,32 @@
 {
-"name": "reflections-chat-app",
-"version": "1.0.0",
-"description": "A React chat application powered by specialized AI companions, connected to a custom FastAPI backend.",
-"main": "src/index.js",
-"scripts": {
-"start": "react-scripts start",
-"build": "react-scripts build"
-},
-"dependencies": {
-"lucide-react": "^0.380.0",
-"react": "^18.3.1",
-"react-dom": "^18.3.1",
-"react-scripts": "^5.0.1"
-},
-"browserslist": {
-"production": [
-">0.2%",
-"not dead",
-"not op_mini all"
-],
-"development": [
-"last 1 chrome version",
-"last 1 firefox version",
-"last 1 safari version"
-]
+  "name": "reflections-chat-app",
+  "version": "1.0.0",
+  "description": "A React chat application powered by specialized AI companions, connected to a custom FastAPI backend.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "lucide-react": "^0.380.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
-}
+
