@@ -8,8 +8,6 @@ function App() {
   return <ReflectionsPage />;
 }
 
-export default App;
-
 export default function App() {
   return <ReflectionsPage />;
 }
