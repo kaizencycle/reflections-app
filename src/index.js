@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App'; // <-- CHANGED: Removed the .jsx extension
+import App from './App'; // CRITICAL: Ensure no '.jsx' here!
 import './index.css';
 
 // This is where React starts running your App component!
