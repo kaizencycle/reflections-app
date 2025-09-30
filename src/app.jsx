@@ -9,10 +9,10 @@ const FASTAPI_ENDPOINT = `${FASTAPI_BASE_URL}/chat`;
 
 // Define companions with roles and styling
 const companions = [
-  { id: 'JADE', name: 'Jade', role: 'Strategic Advisor', color: 'bg-indigo-600', iconColor: 'text-indigo-600', persona: 'You are Athena, a wise and strategic advisor.' },
+  { id: 'JADE', name: 'Jade', role: 'Strategic Advisor', color: 'bg-indigo-600', iconColor: 'text-indigo-600', persona: 'You are Jade, a wise and strategic advisor.' },
   { id: 'HERMES', name: 'Hermes', role: 'Quick Insights Guide', color: 'bg-green-600', iconColor: 'text-green-600', persona: 'You are Hermes, the swift messenger of quick insights.' },
-  { id: 'EVE', name: 'Eve', role: 'Wellness Guide', color: 'bg-pink-600', iconColor: 'text-pink-600', persona: 'You are Hestia, the nurturing wellness guide.' },
-  { id: 'ZUES', name: 'Zues', role: 'Action Coach', color: 'bg-red-600', iconColor: 'text-red-600', persona: 'You are Ares, the action and motivation coach.' }
+  { id: 'EVE', name: 'Eve', role: 'Wellness Guide', color: 'bg-pink-600', iconColor: 'text-pink-600', persona: 'You are Eve, the nurturing wellness guide.' },
+  { id: 'ZUES', name: 'Zues', role: 'Action Coach', color: 'bg-red-600', iconColor: 'text-red-600', persona: 'You are Zues, the action and motivation coach.' }
 ];
 
 // Map companion ID to Tailwind classes for message styling
@@ -73,7 +73,7 @@ const App = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedCompanionId, setSelectedCompanionId] = useState('ATHENA');
+  const [selectedCompanionId, setSelectedCompanionId] = useState('JADE');
   const messagesEndRef = useRef(null);
 
   // Auto-resize textarea logic
