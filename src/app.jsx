@@ -20,7 +20,7 @@ const companionMessageStyleMap = {
   'JADE': 'border-indigo-400 bg-indigo-50 text-indigo-900',
   'HERMES': 'border-green-400 bg-green-50 text-green-900',
   'EVE': 'border-pink-400 bg-pink-50 text-pink-900',
-  'ZEUS': 'border-red-400 bg-red-50 text-red-900',
+  'ZUES': 'border-red-400 bg-red-50 text-red-900',
   'ERROR': 'border-yellow-400 bg-yellow-50 text-yellow-900'
 };
 
@@ -66,7 +66,7 @@ const App = () => {
     {
       id: 1,
       role: 'assistant',
-      content: 'Hello! I'm your Reflections companion. Select a persona on the left to start a focused discussion.',
+      content: 'Hello! I\'m your Reflections companion. Select a persona on the left to start a focused discussion.',
       timestamp: new Date(),
       companion: 'JADE'
     }
@@ -358,4 +358,20 @@ const App = () => {
               </div>
               <button
                 onClick={handleSend}
-                disable
+                disabled={!input.trim() || isLoading}
+                className="bg-gray-900 hover:bg-indigo-600 disabled:bg-gray-300 text-white rounded-2xl p-4 transition-all duration-200 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mt-2 text-center">
+              Press Enter to send, Shift+Enter for new line
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
