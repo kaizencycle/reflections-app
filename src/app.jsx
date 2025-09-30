@@ -68,7 +68,7 @@ const App = () => {
       role: 'assistant',
       content: 'Hello! I'm your Reflections companion. Select a persona on the left to start a focused discussion.',
       timestamp: new Date(),
-      companion: 'ATHENA'
+      companion: 'JADE'
     }
   ]);
   const [input, setInput] = useState('');
