@@ -2,9 +2,9 @@
 
 import axios from "axios";
 
-const LAB4 = process.env.NEXT_PUBLIC_API_LAB4;
-const LEDGER = process.env.NEXT_PUBLIC_API_LEDGER;
-const LAB6 = process.env.NEXT_PUBLIC_API_LAB6;
+const LAB4 = process.env.REACT_APP_API_BASE_URL;
+const LEDGER = process.env.REACT_APP_API_LEDGER_URL;
+const LAB6 = process.env.REACT_APP_API_LAB6_URL;
 
 const api = axios.create({
   timeout: 15000,
@@ -27,9 +27,9 @@ export async function companionRespond() {
 }
 
 /* --------- Env (configure in .env.local) --------- */
-const LAB4   = import.meta?.env?.VITE_API_LAB4   || process.env.NEXT_PUBLIC_API_LAB4   || "";
-const LEDGER = import.meta?.env?.VITE_API_LEDGER || process.env.NEXT_PUBLIC_API_LEDGER || "";
-const LAB6   = import.meta?.env?.VITE_API_LAB6   || process.env.NEXT_PUBLIC_API_LAB6   || "";
+const LAB4   = import.meta?.env?.VITE_API_LAB4   || process.env.REACT_APP_API_BASE_URL   || "";
+const LEDGER = import.meta?.env?.VITE_API_LEDGER || process.env.REACT_APP_API_LEDGER_URL || "";
+const LAB6   = import.meta?.env?.VITE_API_LAB6   || process.env.REACT_APP_API_LAB6_URL   || "";
 
 /* --------- Local token helpers --------- */
 const TOKEN_KEY = "civic_token";           // session token for user
