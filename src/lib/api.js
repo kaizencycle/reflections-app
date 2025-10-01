@@ -2,6 +2,25 @@
 
 import axios from "axios";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE; // your Hive API base URL
+
+function getToken() {
+  return localStorage.getItem("civic_token"); // or whatever key you’re using
+}
+
+export const api = axios.create({
+  baseURL: API_BASE,
+  timeout: 15000,
+});
+
+api.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 const LAB4 = process.env.REACT_APP_API_BASE_URL;
 const LEDGER = process.env.REACT_APP_API_LEDGER_URL;
 const LAB6 = process.env.REACT_APP_API_LAB6_URL;
