@@ -1,8 +1,12 @@
-// app/page.tsx (example)
-import Layout from "@/components/Layout";
-import Companions from "@/components/Companions";
+// app/page.tsx
+import AppLayout from "@/components/AppLayout";
+import Companions from "@/components/Companions"; // your list (Jade, Hermes, Eve, Zeus)
 import Chat from "@/components/Chat";
 
 export default function Page() {
-  return <Layout sidebar={<Companions />}><Chat/></Layout>;
+  return (
+    <AppLayout sidebar={<Companions />}>
+      <Chat />
+    </AppLayout>
+  );
 }
