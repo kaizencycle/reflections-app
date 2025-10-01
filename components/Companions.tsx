@@ -1,22 +1,31 @@
 // components/Companions.tsx
-type Item = { id: string; name: string; desc: string; color: string; active?: boolean };
+import clsx from "clsx";
+
+type Item = {
+  id: string;
+  name: string;
+  desc: string;
+  color: string;
+  active?: boolean;
+};
 
 const items: Item[] = [
-  { id: "jade",   name: "Jade",   desc: "Strategic Advisor", color: "bg-[#6d5efc]" },
+  { id: "jade",   name: "Jade",   desc: "Strategic Advisor",   color: "bg-[#6d5efc]" },
   { id: "hermes", name: "Hermes", desc: "Quick Insights Guide", color: "bg-[#2ecc71]" },
-  { id: "eve",    name: "Eve",    desc: "Wellness Guide", color: "bg-[#ff2e88]" },
-  { id: "zeus",   name: "Zeus",   desc: "Action Coach", color: "bg-[#ff3b30]" }, 
+  { id: "eve",    name: "Eve",    desc: "Wellness Guide",       color: "bg-[#ff2e88]" },
+  { id: "zeus",   name: "Zeus",   desc: "Action Coach",         color: "bg-[#ff3b30]" }, 
 ];
 
 export default function Companions() {
   return (
     <div className="p-3 space-y-3">
-      {items.map(i => (
+      {items.map((i) => (
         <button
           key={i.id}
           className={clsx(
             "w-full text-left rounded-xl px-4 py-3 border transition",
-            "border-token bg-surface hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-[var(--brand)]",
+            "border-token bg-surface hover:bg-surface-muted",
+            "focus:outline-none focus:ring-2 focus:ring-[var(--brand)]",
             i.active && "ring-2 ring-[var(--brand)] shadow-sm"
           )}
         >
