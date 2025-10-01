@@ -102,7 +102,7 @@ index abcdef1..2222222 100644
 +++ b/components/Companions.tsx
 @@
 -  { id: "zeus",   name: "Zues",   desc: "Action Coach", color: "bg-[#ff3b30]" },
-+  { id: "zeus",   name: "Zeus",   desc: "Action Coach", color: "bg-[#ff3b30]" }, // ✅ fixed spelling
++  { id: "zeus",   name: "Zeus",   desc: "Action Coach", color: "bg-[#ff3b30]" }, 
 @@
  export default function Companions() {
 -  return <div>Companions list here</div>;
