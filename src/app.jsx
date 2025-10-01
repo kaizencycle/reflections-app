@@ -12,7 +12,7 @@ const companions = [
   { id: 'JADE', name: 'Jade', role: 'Strategic Advisor', color: 'bg-indigo-600', iconColor: 'text-indigo-600', persona: 'You are Jade, a wise and strategic advisor.' },
   { id: 'HERMES', name: 'Hermes', role: 'Quick Insights Guide', color: 'bg-green-600', iconColor: 'text-green-600', persona: 'You are Hermes, the swift messenger of quick insights.' },
   { id: 'EVE', name: 'Eve', role: 'Wellness Guide', color: 'bg-pink-600', iconColor: 'text-pink-600', persona: 'You are Eve, the nurturing wellness guide.' },
-  { id: 'ZUES', name: 'Zues', role: 'Action Coach', color: 'bg-red-600', iconColor: 'text-red-600', persona: 'You are Zues, the action and motivation coach.' }
+  { id: 'ZEUS', name: 'Zeus', role: 'Action Coach', color: 'bg-red-600', iconColor: 'text-red-600', persona: 'You are Zeus, the action and motivation coach.' }
 ];
 
 // Map companion ID to Tailwind classes for message styling
@@ -20,7 +20,7 @@ const companionMessageStyleMap = {
   'JADE': 'border-indigo-400 bg-indigo-50 text-indigo-900',
   'HERMES': 'border-green-400 bg-green-50 text-green-900',
   'EVE': 'border-pink-400 bg-pink-50 text-pink-900',
-  'ZUES': 'border-red-400 bg-red-50 text-red-900',
+  'ZEUS': 'border-red-400 bg-red-50 text-red-900',
   'ERROR': 'border-yellow-400 bg-yellow-50 text-yellow-900'
 };
 
